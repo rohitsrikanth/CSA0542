@@ -1,0 +1,78 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use  university
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| mentees              |
+| student              |
+| studentdept          |
++----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++--------+----------+----------+--------+------------+------------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername |
++--------+----------+----------+--------+------------+------------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     |
+|    102 | akash    | eee      | m      | tamil nadu | ram        |
+|    103 | arun     | eee      | m      | tamil nadu | saran      |
+|    104 | azeem    | ai&ds    | m      | telanga    | sathish    |
++--------+----------+----------+--------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update mentees set stu_dept="mech" where stu_id=103;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++--------+----------+----------+--------+------------+------------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername |
++--------+----------+----------+--------+------------+------------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     |
+|    102 | akash    | eee      | m      | tamil nadu | ram        |
+|    103 | arun     | mech     | m      | tamil nadu | saran      |
+|    104 | azeem    | ai&ds    | m      | telanga    | sathish    |
++--------+----------+----------+--------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update mentees set stu_state="telangana" where stu_id=104;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++--------+----------+----------+--------+------------+------------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername |
++--------+----------+----------+--------+------------+------------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     |
+|    102 | akash    | eee      | m      | tamil nadu | ram        |
+|    103 | arun     | mech     | m      | tamil nadu | saran      |
+|    104 | azeem    | ai&ds    | m      | telangana  | sathish    |
++--------+----------+----------+--------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from mentees where stu_name="arun";
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select*from mentees;
++--------+----------+----------+--------+------------+------------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername |
++--------+----------+----------+--------+------------+------------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     |
+|    102 | akash    | eee      | m      | tamil nadu | ram        |
+|    104 | azeem    | ai&ds    | m      | telangana  | sathish    |
++--------+----------+----------+--------+------------+------------+
+3 rows in set (0.00 sec)
