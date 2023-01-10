@@ -1,0 +1,155 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use university;
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| mentees              |
+| student              |
+| studentdept          |
++----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++--------+----------+----------+--------+------------+------------+--------------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername | stu_district |
++--------+----------+----------+--------+------------+------------+--------------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     | chennai      |
+|    102 | akash    | eee      | m      | tamil nadu | ram        | vellore      |
+|    104 | azeem    | ai&ds    | m      | telangana  | sathish    | warangal     |
+|    105 | banu     | eee      | f      | tamil nadu | sandeep    | salem        |
+|    106 | eswari   | mech     | f      | tamil nadu | annamalai  | salem        |
++--------+----------+----------+--------+------------+------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table mentees add marks int(3);
+Query OK, 5 rows affected (0.29 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set marks=95 where stu_id=101;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=97 where stu_id=102;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=90 where stu_id=104;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=80 where stu_id=105;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=77 where stu_id=106;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> alter table mentees add subject varchar(100);
+Query OK, 5 rows affected (0.28 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set subject="dbms" where stu_id=101;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="bio&evs" where stu_id=102;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="stats" where stu_id=104;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="c-pgm" where stu_id=105;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="physics" where stu_id=106;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername | stu_district | marks | subject |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     | chennai      |    95 | dbms    |
+|    102 | akash    | eee      | m      | tamil nadu | ram        | vellore      |    97 | bio&evs |
+|    104 | azeem    | ai&ds    | m      | telangana  | sathish    | warangal     |    90 | stats   |
+|    105 | banu     | eee      | f      | tamil nadu | sandeep    | salem        |    80 | c-pgm   |
+|    106 | eswari   | mech     | f      | tamil nadu | annamalai  | salem        |    77 | physics |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees where marks between 95 and 100;
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername | stu_district | marks | subject |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     | chennai      |    95 | dbms    |
+|    102 | akash    | eee      | m      | tamil nadu | ram        | vellore      |    97 | bio&evs |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+2 rows in set (0.03 sec)
+
+mysql> select*from mentees where marks not between 95 and 100;
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername | stu_district | marks | subject |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+|    104 | azeem    | ai&ds    | m      | telangana  | sathish    | warangal     |    90 | stats   |
+|    105 | banu     | eee      | f      | tamil nadu | sandeep    | salem        |    80 | c-pgm   |
+|    106 | eswari   | mech     | f      | tamil nadu | annamalai  | salem        |    77 | physics |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where subject in('c-pgm');
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername | stu_district | marks | subject |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+|    105 | banu     | eee      | f      | tamil nadu | sandeep    | salem        |    80 | c-pgm   |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) from mentees where stu_dept="eee";
++------------+
+| sum(marks) |
++------------+
+|        177 |
++------------+
+1 row in set (0.09 sec)
+
+mysql> select avg(marks) as avg from mentees;
++---------+
+| avg     |
++---------+
+| 87.8000 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) as min from mentees;
++------+
+| min  |
++------+
+|   77 |
++------+
+1 row in set (0.05 sec)
+
+mysql> select max(marks) as max from mentees;
++------+
+| max  |
++------+
+|   97 |
++------+
+1 row in set (0.00 sec)
