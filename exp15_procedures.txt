@@ -1,0 +1,72 @@
+mysql> use university;
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| marks_view           |
+| mdept                |
+| mentees              |
+| mentees1             |
+| per                  |
+| student              |
+| studentdept          |
++----------------------+
+7 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername | stu_district | marks | subject |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     | chennai      |    95 | dbms    |
+|    102 | akash    | eee      | m      | tamil nadu | ram        | vellore      |    97 | bio&evs |
+|    104 | azeem    | ai&ds    | m      | telangana  | sathish    | warangal     |    90 | stats   |
+|    105 | banu     | eee      | f      | tamil nadu | sandeep    | salem        |    80 | c-pgm   |
+|    106 | eswari   | mech     | f      | tamil nadu | annamalai  | salem        |    77 | physics |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE mentee_info()
+    -> BEGIN
+    -> select*from mentees;
+    -> END; //
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> CALL mentee_info();
+    -> //
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+| stu_id | stu_name | stu_dept | gender | stu_state  | fathername | stu_district | marks | subject |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+|    101 | ajay     | cse      | m      | tamil nadu | sanjay     | chennai      |    95 | dbms    |
+|    102 | akash    | eee      | m      | tamil nadu | ram        | vellore      |    97 | bio&evs |
+|    104 | azeem    | ai&ds    | m      | telangana  | sathish    | warangal     |    90 | stats   |
+|    105 | banu     | eee      | f      | tamil nadu | sandeep    | salem        |    80 | c-pgm   |
+|    106 | eswari   | mech     | f      | tamil nadu | annamalai  | salem        |    77 | physics |
++--------+----------+----------+--------+------------+------------+--------------+-------+---------+
+5 rows in set (0.08 sec)
+
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> CREATE PROCEDURE while_loop()
+    ->  BEGIN
+    -> DECLARE num INT default 1;
+    ->  DECLARE res Varchar(50) default '';
+    ->  WHILE num < 78125 DO
+    ->  SET res = CONCAT(res,num,',');
+    -> SET num = num*5;
+    -> END While;
+    ->  SELECT res;
+    ->  END //
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> call while_loop()
+    -> //
++----------------------------+
+| res                        |
++----------------------------+
+| 1,5,25,125,625,3125,15625, |
++----------------------------+
+1 row in set (0.09 sec)
+
+Query OK, 0 rows affected (0.11 sec)
