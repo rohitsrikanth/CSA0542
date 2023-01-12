@@ -1,0 +1,111 @@
+mysql> use rk;
+Database changed
+mysql> create table student1(id int(3),name varchar(10),age int(3),dbms int(2),p
+ython int(2));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc student1;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int(3)      | YES  |     | NULL    |       |
+| name   | varchar(10) | YES  |     | NULL    |       |
+| age    | int(3)      | YES  |     | NULL    |       |
+| dbms   | int(2)      | YES  |     | NULL    |       |
+| python | int(2)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> alter table student1 add primary key(id);
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from student1;
+Empty set (0.00 sec)
+
+mysql> desc student1;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int(3)      | NO   | PRI | 0       |       |
+| name   | varchar(10) | YES  |     | NULL    |       |
+| age    | int(3)      | YES  |     | NULL    |       |
+| dbms   | int(2)      | YES  |     | NULL    |       |
+| python | int(2)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> insert into student1 values(1,"kiran",19,85,90);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into student1 values(2,"sunil",20,90,91);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into student1 values(3,"kesav",18,92,93);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select*from student1;
++----+-------+------+------+--------+
+| id | name  | age  | dbms | python |
++----+-------+------+------+--------+
+|  1 | kiran |   19 |   85 |     90 |
+|  2 | sunil |   20 |   90 |     91 |
+|  3 | kesav |   18 |   92 |     93 |
++----+-------+------+------+--------+
+3 rows in set (0.02 sec)
+
+mysql> select avg(dbms) as average from student1;
++---------+
+| average |
++---------+
+| 89.0000 |
++---------+
+1 row in set (0.05 sec)
+
+mysql> select sum(dbms) as sum from student1;
++------+
+| sum  |
++------+
+|  267 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select name,dbms from student1 where dbms>=92;
++-------+------+
+| name  | dbms |
++-------+------+
+| kesav |   92 |
++-------+------+
+1 row in set (0.00 sec)
+
+mysql> create view python as select*from student1 where python>90;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> select*from python;
++----+-------+------+------+--------+
+| id | name  | age  | dbms | python |
++----+-------+------+------+--------+
+|  2 | sunil |   20 |   90 |     91 |
+|  3 | kesav |   18 |   92 |     93 |
++----+-------+------+------+--------+
+2 rows in set (0.05 sec)
+
+mysql> select*from student1 order by name;
++----+-------+------+------+--------+
+| id | name  | age  | dbms | python |
++----+-------+------+------+--------+
+|  3 | kesav |   18 |   92 |     93 |
+|  1 | kiran |   19 |   85 |     90 |
+|  2 | sunil |   20 |   90 |     91 |
++----+-------+------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select*from student1 group by dbms;
++----+-------+------+------+--------+
+| id | name  | age  | dbms | python |
++----+-------+------+------+--------+
+|  1 | kiran |   19 |   85 |     90 |
+|  2 | sunil |   20 |   90 |     91 |
+|  3 | kesav |   18 |   92 |     93 |
++----+-------+------+------+--------+
+3 rows in set (0.00 sec)
