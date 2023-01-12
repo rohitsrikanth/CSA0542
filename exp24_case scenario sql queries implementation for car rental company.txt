@@ -1,0 +1,93 @@
+mysql> use rk;
+Database changed
+mysql> create table car(year int(4), name varchar(10),mileage int(5),cost int(6)
+);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc car;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| year    | int(4)      | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| mileage | int(5)      | YES  |     | NULL    |       |
+| cost    | int(6)      | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> insert into car values(2002,"ford",10,200000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into car values(2006,"hyuandai",15,300000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into car values(2004,"audi",14,350000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select*from car;
++------+----------+---------+--------+
+| year | name     | mileage | cost   |
++------+----------+---------+--------+
+| 2002 | ford     |      10 | 200000 |
+| 2006 | hyuandai |      15 | 300000 |
+| 2004 | audi     |      14 | 350000 |
++------+----------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update car set name="benz" where year=2006;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from car;
++------+------+---------+--------+
+| year | name | mileage | cost   |
++------+------+---------+--------+
+| 2002 | ford |      10 | 200000 |
+| 2006 | benz |      15 | 300000 |
+| 2004 | audi |      14 | 350000 |
++------+------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select*from car having mileage>10;
++------+------+---------+--------+
+| year | name | mileage | cost   |
++------+------+---------+--------+
+| 2006 | benz |      15 | 300000 |
+| 2004 | audi |      14 | 350000 |
++------+------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> delete from car where year=2002;
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select*from car;
++------+------+---------+--------+
+| year | name | mileage | cost   |
++------+------+---------+--------+
+| 2006 | benz |      15 | 300000 |
+| 2004 | audi |      14 | 350000 |
++------+------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select max(cost) from car;
++-----------+
+| max(cost) |
++-----------+
+|    350000 |
++-----------+
+1 row in set (0.03 sec)
+
+mysql> alter table car add primary key(mileage);
+Query OK, 2 rows affected (0.28 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc car;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| year    | int(4)      | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| mileage | int(5)      | NO   | PRI | 0       |       |
+| cost    | int(6)      | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
