@@ -1,0 +1,115 @@
+mysql> use nkk;
+Database changed
+mysql> craete table patients(id int(4),name varchar(10),disease varchar(10),age
+int(3));
+
+mysql> create table patients(id int(4),name varchar(10),disease varchar(10),age
+int(3));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc patients;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int(4)      | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| disease | varchar(10) | YES  |     | NULL    |       |
+| age     | int(3)      | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> insert into patients values(1,"vikas","fever",23);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into patients values(2,"ramu","sugar",27);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into patients values(3,"rakesh","bp",25);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select*from patients;
++------+--------+---------+------+
+| id   | name   | disease | age  |
++------+--------+---------+------+
+|    1 | vikas  | fever   |   23 |
+|    2 | ramu   | sugar   |   27 |
+|    3 | rakesh | bp      |   25 |
++------+--------+---------+------+
+3 rows in set (0.02 sec)
+
+mysql> create table doctor(did int(3),dname varchar(10),specialization varchar(1
+0));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> insert into doctor values(12,"ravi","heart");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into doctor values(15,"vidhya","ent");
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into doctor values(11,"karthik","eye");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select*from doctor;
++------+---------+----------------+
+| did  | dname   | specialization |
++------+---------+----------------+
+|   12 | ravi    | heart          |
+|   15 | vidhya  | ent            |
+|   11 | karthik | eye            |
++------+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select did,dname from doctor;
++------+---------+
+| did  | dname   |
++------+---------+
+|   12 | ravi    |
+|   15 | vidhya  |
+|   11 | karthik |
++------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from patients where disease="fever";
++------+-------+---------+------+
+| id   | name  | disease | age  |
++------+-------+---------+------+
+|    1 | vikas | fever   |   23 |
++------+-------+---------+------+
+1 row in set (0.02 sec)
+
+mysql> update patients set age=28 where id=3;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from patients;
++------+--------+---------+------+
+| id   | name   | disease | age  |
++------+--------+---------+------+
+|    1 | vikas  | fever   |   23 |
+|    2 | ramu   | sugar   |   27 |
+|    3 | rakesh | bp      |   28 |
++------+--------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table patients drop age;
+Query OK, 3 rows affected (0.25 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from patients;
++------+--------+---------+
+| id   | name   | disease |
++------+--------+---------+
+|    1 | vikas  | fever   |
+|    2 | ramu   | sugar   |
+|    3 | rakesh | bp      |
++------+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select name from patients where id=1;
++-------+
+| name  |
++-------+
+| vikas |
++-------+
+1 row in set (0.00 sec)
