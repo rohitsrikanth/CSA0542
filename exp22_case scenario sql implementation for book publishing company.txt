@@ -1,0 +1,96 @@
+mysql> use rohit;
+Database changed
+mysql> create table books_company(bookno int(3),bookname varchar(10),authorname
+varchar(10),cost int(4),edition int(3));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> insert into books_company values(121,"dbms","vikas",400,3);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into books_company values(123,"python","rosum",600,5);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into books_company values(125,"C","ritchie",900,7);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select*from books_company;
++--------+----------+------------+------+---------+
+| bookno | bookname | authorname | cost | edition |
++--------+----------+------------+------+---------+
+|    121 | dbms     | vikas      |  400 |       3 |
+|    123 | python   | rosum      |  600 |       5 |
+|    125 | C        | ritchie    |  900 |       7 |
++--------+----------+------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> update books_company set authorname="ted" where bookno=121;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from books_company;
++--------+----------+------------+------+---------+
+| bookno | bookname | authorname | cost | edition |
++--------+----------+------------+------+---------+
+|    121 | dbms     | ted        |  400 |       3 |
+|    123 | python   | rosum      |  600 |       5 |
+|    125 | C        | ritchie    |  900 |       7 |
++--------+----------+------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> create table author(id int(3),name varchar(10),researcharea varchar(10));
+
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> insert into author values(200,"newton","physics");
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into author values(201,"gauss","maths");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into author values(203,"de-broglie","optics");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select*from author;
++------+------------+--------------+
+| id   | name       | researcharea |
++------+------------+--------------+
+|  200 | newton     | physics      |
+|  201 | gauss      | maths        |
+|  203 | de-broglie | optics       |
++------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select authorname from books_company where bookname="python";
++------------+
+| authorname |
++------------+
+| rosum      |
++------------+
+1 row in set (0.00 sec)
+
+mysql> alter table books_company add publishedyear int(4);
+Query OK, 3 rows affected (0.27 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> update books_company set publishedyear=1995 where bookno=121;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books_company set publishedyear=1992 where bookno=123;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books_company set publishedyear=1997 where bookno=125;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from books_company;
++--------+----------+------------+------+---------+---------------+
+| bookno | bookname | authorname | cost | edition | publishedyear |
++--------+----------+------------+------+---------+---------------+
+|    121 | dbms     | ted        |  400 |       3 |          1995 |
+|    123 | python   | rosum      |  600 |       5 |          1992 |
+|    125 | C        | ritchie    |  900 |       7 |          1997 |
++--------+----------+------------+------+---------+---------------+
+3 rows in set (0.00 sec)
+
